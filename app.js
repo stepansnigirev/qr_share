@@ -9,6 +9,9 @@ function makeQRCode(text){
 }
 
 function update(){
+  if($("#inp").val() == ""){
+    $("#inp").val("Type something here");
+  }
   makeQRCode($("#inp").val());
 }
 

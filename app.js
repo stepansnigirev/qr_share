@@ -20,7 +20,7 @@ function onLoad() {
   // console.log('Title shared: ' + parsedUrl.searchParams.get('name'));
   // console.log('Text shared: ' + parsedUrl.searchParams.get('description'));
   // console.log('URL shared: ' + parsedUrl.searchParams.get('link'));
-  let size = Math.min($(window).width(), $(window).height());
+  let size = Math.min($(window).width(), $(window).height())-50;
 
   qrcode = new QRCode(document.getElementById("qrcode"), {
   	width : size,

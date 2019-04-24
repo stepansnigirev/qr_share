@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="manifest" href="/manifest.json">
+	<!-- android -->
+	<meta name="mobile-web-app-capable" content="yes">
+	<!-- <link rel="icon" sizes="192x192" href="frontend/icons/192.png"> -->
+	<!-- ios -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- 	<link rel="apple-touch-icon" href="frontend/icons/80.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="frontend/icons/152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="frontend/icons/180.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="frontend/icons/167.png">
+	<link href="frontend/icons/180.png" rel="shortcut icon">
+-->
+	<title>QR code generator</title>
+	<style type="text/css">
+		html, body{
+			background: #f6f6f6;
+			font-family: "Helvetica Neue";
+		}
+		div{
+			margin: 20px auto;
+			max-width: 600px;
+			padding: 30px;
+			background: #fff;
+			box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+		}
+		#qrcode{
+			width: 600px;
+		}
+		#text{
+			word-wrap: break-word;
+		}
+		textarea{
+			border: none;
+			font: inherit;
+			width: 100%;
+			height: 100px;
+			word-wrap: break-word;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="qrcode"></div>
+	<!-- <div id="text"></div> -->
+	<div><textarea id="inp" type="text" value="" onchange="update()"  onkeyup="update()"></textarea></div>
+
+
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript" src="./qrcode.min.js"></script>
+<script type="text/javascript" src="./app.js"></script>
+
+</body>
+</html>

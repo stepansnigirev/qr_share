@@ -27,14 +27,40 @@ function update(){
 
 makeQRCode("Paste text to encode as QR code here");
 
-// registering serviceworker for no reason
-// I just follow the manual: 
-// https://chodounsky.net/2019/03/24/progressive-web-application-as-a-share-option-in-android/
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(function(reg){
-        console.log("Service worker registered.");
-     }).catch(function(err) {
-        console.log("Service worker not registered. This happened:", err)
-    });
+  navigator.serviceWorker.register('sw.js').then(registration => {
+    console.log('ServiceWorker registration successful with scope:',
+                registration.scope);
+  }).catch(err => {
+    console.error('ServiceWorker registration failed:', err);
+  });
 }
+
+function logText(message, isError) {
+  if (isError)
+    console.error(message);
+  else
+    console.log(message);
+  // var p = document.createElement('p');
+  // if (isError)
+  //   p.setAttribute('class', 'error');
+  // document.querySelector('#output').appendChild(p);
+  // p.appendChild(document.createTextNode(message));
+}
+
+function onLoad() {
+  var parsedUrl = new URL(window.location.toString());
+  $("#inp").val(parsedUrl.searchParams.get("text"));
+  logText("Title shared: " + parsedUrl.searchParams.get("title"));
+  logText("Text shared: " + parsedUrl.searchParams.get("text"));
+  logText("URL shared: " + parsedUrl.searchParams.get("url"));
+  // We still have the old "url_template" member in the manifest, which is
+  // how WST was previously specced and implemented in Chrome. If the user
+  // agent uses that method, the "oldapi" parameter will be set.
+  if (parsedUrl.searchParams.get("oldapi")) {
+    logText("Your browser is using the deprecated 'url_template' Web Share "
+            + "Target API.", true);
+  }
+}
+
+window.addEventListener('load', onLoad);

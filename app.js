@@ -4,26 +4,17 @@ let qrcode;
 
 function makeQRCode(text){
   qrcode.makeCode(text);
-  // $("#text").html(text);
   $("#inp").val(text);
 }
 
 function update(){
-  if($("#inp").val() == ""){
-    $("#inp").val("Type something here");
-  }
   makeQRCode($("#inp").val());
 }
 
 
 function onLoad() {
 
-  // var parsedUrl = new URL(window.location.toString());
-  // console.log(parsedUrl);
-  // console.log('Title shared: ' + parsedUrl.searchParams.get('name'));
-  // console.log('Text shared: ' + parsedUrl.searchParams.get('description'));
-  // console.log('URL shared: ' + parsedUrl.searchParams.get('link'));
-  let size = Math.min($(window).width(), $(window).height())-50;
+  let size = $("#qrcode").width();
 
   qrcode = new QRCode(document.getElementById("qrcode"), {
   	width : size,
@@ -50,11 +41,6 @@ function onLoad() {
       console.error(message);
     else
       console.log(message);
-    // var p = document.createElement('p');
-    // if (isError)
-    //   p.setAttribute('class', 'error');
-    // document.querySelector('#output').appendChild(p);
-    // p.appendChild(document.createTextNode(message));
   }
 
   var parsedUrl = new URL(window.location.toString());
